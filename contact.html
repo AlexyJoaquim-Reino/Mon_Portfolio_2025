@@ -7,9 +7,25 @@
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="./css/styles.css">
   <link rel="stylesheet" href="./css/contact.css">
+   <style>
+    textarea {
+      resize: none; /* Empêche la redimension du champ texte */
+      width: 100%;
+      height: 150px;
+    }
+    .error-message {
+      color: red;
+      display: none;
+    }
+    .success-message {
+      color: green;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-  <!-- Header -->
+
+ <!-- Header -->
   <header>
     <div class="header-container">
       <div class="logo">
@@ -38,7 +54,9 @@
       <!-- Formulaire de contact -->
       <div class="form-container">
         <h2>Formulaire de contact</h2>
-        <form action="#" method="POST">
+        <form id="contact-form" action="send_email.php" method="POST">
+          <div class="error-message" id="error-message">Veuillez compléter tous les champs.</div>
+
           <label for="nom">Nom</label>
           <input type="text" id="nom" name="nom" placeholder="Écrivez votre NOM" required>
 
@@ -76,5 +94,25 @@
   <footer>
     <p>2025 Portfolio. Tous droits réservés. | Site entièrement développé et designé par JOAQUIM Alexy</p>
   </footer>
+
+  <script>
+    document.getElementById('contact-form').addEventListener('submit', function(event) {
+      const nom = document.getElementById('nom').value;
+      const prenom = document.getElementById('prenom').value;
+      const email = document.getElementById('email').value;
+      const message = document.getElementById('message').value;
+
+      if (!nom || !prenom || !email || !message) {
+        event.preventDefault();
+        document.getElementById('error-message').style.display = 'block';
+        document.getElementById('success-message').style.display = 'none';
+      } else {
+        document.getElementById('error-message').style.display = 'none';
+        document.getElementById('success-message').style.display = 'block';
+      }
+    });
+  </script>
+  </script>
 </body>
 </html>
+
