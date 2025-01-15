@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil - Portfolio Alexy JOAQUIM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/accueil.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="./img/logo_Alexy.png" alt="Logo Alexy JOAQUIM">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="index.html" class="active">Accueil</a></li>
+          <li><a href="experiences.html">Expériences</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Section Hero -->
+  <main>
+    <section id="hero">
+      <div class="animated-squares">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <div class="hero-content">
+        <h1>Alexy JOAQUIM</h1>
+        <img id="Alexy" src="./img/Alexy.JPG" alt="Alexy JOAQUIM">
+        <p class="presentation">Motion designer, futur modeleur 3D et monteur vidéo.
+           Étudiant en deuxième année de BUT Métiers du Multimédia et de l'Internet
+           à la recherche d'un stage de 12 semaines à partir du mois d'Avril</p>
+        <a href="./pdf/CV_Alexy_JOAQUIM.pdf" class="cta-btn">Voir mon CV</a>
+        <div class="social-icons">
+          <a href="https://www.linkedin.com/in/alexy-joaquim-reino-950869221/"><img src="./img/linkedin-logo-linkedin-icon-transparent-free-png.webp" alt="LinkedIn"></a>
+          <a href="https://github.com/AlexyJoaquim-Reino"><img src="./img/17119660-logo-github-icone-git-hub-avec-texte-sur-fond-blanc-et-noir-gratuit-vectoriel copie.png" alt="GitHub"></a>
+          <a href="https://www.instagram.com/joaquim_alexy/"><img src="./img/instagram-logo-instagram-icon-transparent-free-png.webp" alt="ArtStation"></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section À propos -->
+    <section id="about">
+      <h2>À propos</h2>
+      <div class="about-container">
+        <div class="card" id="card">
+            <div class="highlight" id="highlight"></div>
+            <div class="nom">JOAQUIM Alexy</div>
+            <div class="hp">PV: 120</div>
+            <div class="type">Type: Créatif</div>
+            <img src="./img/Alexy.webp" alt="3D Effect Image">
+            <div class="content">
+              <p class="paragraphe_carte"><strong>Design Créatif:</strong> Grâce à mes compétences en design graphique, je transforme vos idées en visuels captivants et percutants pour rendre vos projets uniques et mémorables.</p>
+              <p class="paragraphe_carte"><strong>Montage Stratégique:</strong> En utilisant mon expertise en montage vidéo, je structure et rythme vos contenus pour captiver votre audience et transmettre un message impactant.</p>
+              <p class="paragraphe_carte"><strong>Animation Dynamique:</strong> Avec mon savoir-faire en motion design, je crée des animations fluides et engageantes qui donnent vie à vos idées et enrichissent l’expérience utilisateur.</p>
+            </div>
+            <div class="stats">
+              <span>Faiblesse: gérer des imprévus</span>
+              <span>Résistance: stoïque face à la fatigue</span>
+              <span>Coût de retraite: des pauses pour se recentrer</span>
+            </div>
+          </div>
+        <div class="container_paragraphe">
+            <p class="paragraphe">
+                Passionné par la création numérique, je suis étudiant en 2ᵉ année de BUT Métiers du Multimédia et de l'Internet à l'Université 
+                Sorbonne Paris Nord. Je me spécialise dans des domaines variés comme l’animation 3D, le motion design, le montage vidéo, et le 
+                graphisme, avec une expertise dans des outils tels que Photoshop, Illustrator, InDesign, et Blender.
+            </p>
+
+            <p class="paragraphe">
+                Mon approche combine créativité et rigueur technique pour donner vie à des projets innovants et captivants. À travers mon 
+                portfolio, vous découvrirez mes réalisations, fruits de ma curiosité et de mon ambition à repousser les limites de mes 
+                compétences.
+            </p>
+
+            <p class="paragraphe">
+                Actuellement à la recherche d’un stage pour avril 2025, je suis motivé à intégrer une équipe où je pourrai mettre à profit mes 
+                compétences tout en continuant à apprendre et à évoluer dans le domaine du multimédia et du design interactif.
+            </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact">
+      <h2>Vous souhaitez me contacter ?</h2>
+      <a href="contact.html" class="cta-btn">Contactez-moi</a>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p id="container_footer">2025 Portfolio. Tous droits réservés. | Site entièrement développé et designé par JOAQUIM Alexy</p>
+  </footer>
+
+  <script>
+    const card = document.getElementById('card');
+    const highlight = document.getElementById('highlight');
+
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const rotateX = (y - rect.height / 2) / 10;
+      const rotateY = (rect.width / 2 - x) / 10;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      const img = card.querySelector('img');
+      img.style.transform = `translate(-50%, -50%) translateZ(30px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+
+      // Move the highlight effect
+      highlight.style.opacity = 1;
+      highlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.5) 0%, transparent 60%)`;
+
+      // Dynamically change holographic colors
+      const hue = (x / rect.width) * 360;
+      const lightness = 50 + (y / rect.height) * 20;
+      card.style.setProperty('--card-edge', `hsl(${hue}, 100%, ${lightness}%)`);
+      card.style.setProperty('--card-glow', `hsl(${hue}, 100%, ${lightness + 10}%)`);
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+      const img = card.querySelector('img');
+      img.style.transform = 'translate(-50%, -50%) translateZ(30px) rotateX(0) rotateY(0)';
+
+      // Hide the highlight effect
+      highlight.style.opacity = 0;
+
+      // Reset holographic colors
+      card.style.setProperty('--card-edge', 'hsl(47, 100%, 78%)');
+      card.style.setProperty('--card-glow', 'hsl(175, 100%, 90%)');
+    });
+
+    document.addEventListener("DOMContentLoaded", () => {
+    const container = document.querySelector(".animated-squares");
+    const numSquares = 90; // Nombre total de carrés
+
+    for (let i = 0; i < numSquares; i++) {
+      const square = document.createElement("div");
+
+      // Générer une position initiale uniquement sur les bords de l'écran
+      const isHorizontal = Math.random() > 0.5; // Décide si le carré commence sur un bord horizontal ou vertical
+      square.style.top = isHorizontal ? `${Math.random() * 100}%` : `${Math.random() < 0.5 ? 0 : 100}%`;
+      square.style.left = isHorizontal ? `${Math.random() < 0.5 ? 0 : 100}%` : `${Math.random() * 100}%`;
+
+      // Taille aléatoire
+      const size = Math.random() * 40 + 20; // Entre 20px et 60px
+      square.style.width = `${size}px`;
+      square.style.height = `${size}px`;
+
+      // Durée et délai d'animation
+      square.style.animationDuration = `${Math.random() * 10 + 5}s`; // Entre 5s et 15s
+      square.style.animationDelay = `0s`; // Pas de délai pour que tout commence immédiatement
+
+      container.appendChild(square);
+    }
+  });
+  </script>
+</body>
+</html>
