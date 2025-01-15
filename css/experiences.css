@@ -145,7 +145,51 @@ body {
     .competence-grid {
       grid-template-columns: repeat(2, 1fr); /* 2 colonnes sur les écrans moyens */
     }
+
+    .competence-grid {
+      left:0;
+    }
+
+    .experience-card {
+      display:block;
+      left:0px;
+    }
+
+    .experience-card img {
+      width:250px;
+    }
   }
+
+  @media (max-width: 768px) {
+    .header-container {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 10px;
+      position:relative;
+    }
+  
+    .logo {
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: flex-start;
+    }
+  
+    nav ul {
+      flex: 2 1 auto;
+      justify-content: flex-end;
+      gap: 5px;
+    }
+  
+    nav ul li {
+      display: inline-block;
+    }
+  
+    nav ul a {
+      font-size: 12px;
+      padding: 5px;
+    }
+  }
+  
 
   @media (max-width: 480px) {
     .competence-grid {

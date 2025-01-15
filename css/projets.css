@@ -84,6 +84,10 @@ body {
     color: #121212;
   }
   
+
+
+
+
   /* Grille des projets */
 /*  .projets-grid {
     display: grid;
@@ -106,6 +110,40 @@ body {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
+  @media (max-width: 768px) {
+    .header-container {
+      flex-wrap: wrap;
+      justify-content: space-between;
+      padding: 0px;
+      position:relative;
+    }
+  
+    .logo {
+      flex: 1 0 auto;
+      display: flex;
+      justify-content: flex-start;
+    }
+  
+    nav ul {
+      flex: 2 1 auto;
+      justify-content: flex-end;
+      gap: 5px;
+    }
+  
+    nav ul li {
+      display: inline-block;
+    }
+  
+    nav ul a {
+      font-size: 12px;
+      padding: 5px;
+    }
+
+    .projets-grid {
+      grid-template-columns: none;
+    }
+  }
+
   .projet-card:hover {
     transform: scale(1.05);
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);

@@ -27,6 +27,46 @@ body {
     width:100vw;
   }
 
+  /* Responsive : Adaptation pour les petits écrans */
+@media (max-width: 768px) {
+  .header-container {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px;
+    position:relative;
+  }
+
+  .logo {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  nav ul {
+    flex: 2 1 auto;
+    justify-content: flex-end;
+    gap: 5px;
+  }
+
+  nav ul li {
+    display: inline-block;
+  }
+
+  nav ul a {
+    font-size: 12px;
+    padding: 5px;
+  }
+
+  .card img {
+    top: 0%;
+  }
+
+  .card .content {
+    margin-top:0;
+    font-size:12px;
+  }
+}
+ 
   .logo img {
     width: 70px;
     height:auto;
@@ -71,7 +111,7 @@ body {
   }
 
   .presentation {
-    width:35vw;
+    width:75vw;
   }
 
   a {
@@ -102,6 +142,39 @@ body {
     margin-bottom: 1.5rem;
   }
   
+  /* Centrer le contenu du hero-content sur mobile */
+@media (max-width: 768px) {
+
+  #hero {
+    height:120vh;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Occupe toute la hauteur de l'écran */
+    margin: 0 auto; /* Centre horizontalement */
+  }
+
+  .hero-content img {
+    max-width: 80%; /* Adapte la taille de l'image à l'écran */
+    height: auto;
+  }
+
+  .hero-content p {
+    margin: 10px 0;
+  }
+
+  .hero-content .cta-btn {
+    margin-top: 15px;
+  }
+}
+
   .cta-btn {
     display: inline-block;
     padding: 0.8rem 2rem;
@@ -377,6 +450,15 @@ body {
     justify-content:space-evenly;
   }
   
+  @media (max-width: 768px) {
+    .about-container {
+      display: block;
+      align-items: unset;
+      justify-content: unset;
+    }
+  }
+
+
   .about-container img {
     height: auto;
     border-radius: 15px;
