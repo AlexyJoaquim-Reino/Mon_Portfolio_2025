@@ -12,19 +12,24 @@
   <!-- Header -->
   <header>
     <div class="header-container">
-      <div class="logo">
+        <div class="logo">
         <img src="./img/logo_Alexy.png" alt="Logo Alexy JOAQUIM">
-      </div>
-      <nav>
-        <ul>
-          <li><a href="index.html">Accueil</a></li>
-          <li><a href="experiences.html">Expériences</a></li>
-          <li><a href="projets.html" class="active">Projets</a></li>
-          <li><a href="contact.html">Contact</a></li>
+        </div>
+        <nav>
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Accueil</a></li>
+            <li><a href="experiences.html">Expériences</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
-      </nav>
+        </nav>
+        <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+        </div>
     </div>
-  </header>
+   </header>
 
   <!-- Section Réalisations -->
   <main>
@@ -263,6 +268,16 @@
       container.appendChild(square);
     }
   });
+
+     // Sélectionnez les éléments HTML
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    // Ajoutez un gestionnaire d'événement pour le clic sur le hamburger
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
   </script>
 </body>
 </html>
