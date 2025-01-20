@@ -191,8 +191,8 @@ nav ul li a {
 
 .competence-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 90px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 60px;
 }
 
   /* Cartes individuelles */
@@ -216,7 +216,7 @@ nav ul li a {
   }
   
   .competence-card img {
-    width: 150px;
+    width: 200px;
     height: auto;
     margin-bottom: 0.5rem;
   }
