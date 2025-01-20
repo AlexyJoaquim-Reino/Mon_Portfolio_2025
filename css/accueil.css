@@ -183,6 +183,11 @@ nav ul li a {
   /* Centrer le contenu du hero-content sur mobile */
 @media (max-width: 768px) {
 
+  .card img {
+      position:relative;
+      top:45%;
+  }
+
   #hero {
     height:120vh;
   }

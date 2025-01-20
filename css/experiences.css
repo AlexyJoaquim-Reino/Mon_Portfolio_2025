@@ -182,15 +182,18 @@ nav ul li a {
     margin-bottom: 2rem;
   }
   
-  .competence-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
-    gap: 60px; 
-    padding: 20px 0; 
-    max-width: 500px;
-    position:relative;
-    left:480px;
-  }
+.container {
+  display: flex;
+  justify-content: center; /* Centre horizontalement */
+  align-items: center; /* Optionnel : centre verticalement si nécessaire */
+  padding: 20px; /* Optionnel : pour ajouter un espace autour */
+}
+
+.competence-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 90px;
+}
 
   /* Cartes individuelles */
   .competence-card {
@@ -203,6 +206,7 @@ nav ul li a {
     padding: 1rem;
     text-align: center;
     transition: transform 0.3s ease, background-color 0.3s ease;
+    max-width: 500px;
   }
   
 
@@ -212,7 +216,7 @@ nav ul li a {
   }
   
   .competence-card img {
-    width: 200px;
+    width: 150px;
     height: auto;
     margin-bottom: 0.5rem;
   }
