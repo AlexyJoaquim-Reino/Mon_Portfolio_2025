@@ -95,22 +95,43 @@
     <p>2025 Portfolio. Tous droits réservés. | Site entièrement développé et designé par JOAQUIM Alexy</p>
   </footer>
 
+  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
   <script>
-    document.getElementById('contact-form').addEventListener('submit', function(event) {
-      const nom = document.getElementById('nom').value;
-      const prenom = document.getElementById('prenom').value;
-      const email = document.getElementById('email').value;
-      const message = document.getElementById('message').value;
+        // Initialisation d'EmailJS
+      emailjs.init("gyFnnXz0noGcOl2eg"); // Remplacez YOUR_USER_ID par votre ID utilisateur EmailJS
 
-      if (!nom || !prenom || !email || !message) {
+      // Gestionnaire de soumission du formulaire
+      document.getElementById('contact-form').addEventListener('submit', function(event) {
         event.preventDefault();
-        document.getElementById('error-message').style.display = 'block';
-        document.getElementById('success-message').style.display = 'none';
-      } else {
+
+        // Récupérer les valeurs du formulaire
+        const nom = document.getElementById('nom').value;
+        const prenom = document.getElementById('prenom').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        if (!nom || !prenom || !email || !message) {
+          document.getElementById('error-message').style.display = 'block';
+          document.getElementById('success-message').style.display = 'none';
+          return;
+        }
+
         document.getElementById('error-message').style.display = 'none';
-        document.getElementById('success-message').style.display = 'block';
-      }
-    });
+
+        // Envoi des données via EmailJS
+        emailjs.send("service_iaz8hxq", "template_tr9vnkh", {
+          nom: nom,
+          prenom: prenom,
+          email: email,
+          message: message,
+        }).then(function(response) {
+          console.log("SUCCESS!", response.status, response.text);
+          document.getElementById('success-message').style.display = 'block';
+        }, function(error) {
+          console.log("FAILED...", error);
+          alert("Une erreur s'est produite. Veuillez réessayer.");
+        });
+      });
   </script>
   </script>
 </body>
