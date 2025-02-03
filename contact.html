@@ -75,6 +75,11 @@
           <textarea id="message" name="message" placeholder="Écrivez votre message" required></textarea>
 
           <button type="submit">Envoyer</button>
+
+          <div id="success-message" style="display: none; color: green; font-weight: bold; margin-top: 10px;">
+            ✅ Votre message a été envoyé avec succès !
+          </div>
+          
         </form>
       </div>
 
@@ -82,9 +87,9 @@
       <div class="social-links">
         <h2>Mes réseaux</h2>
         <div class="icons">
-          <a href="https://www.linkedin.com/in/alexy-joaquim-reino-950869221/"><img src="./img/linkedin-logo-linkedin-icon-transparent-free-png.webp" alt="LinkedIn"></a>
-          <a href="https://github.com/AlexyJoaquim-Reino"><img src="./img/17119660-logo-github-icone-git-hub-avec-texte-sur-fond-blanc-et-noir-gratuit-vectoriel copie.png" alt="GitHub"></a>
-          <a href="https://www.instagram.com/joaquim_alexy/"><img src="./img/instagram-logo-instagram-icon-transparent-free-png.webp" alt="Instagram"></a>
+          <a href="https://www.linkedin.com/in/alexy-joaquim-reino-950869221/" target="_blank"><img src="./img/linkedin-logo-linkedin-icon-transparent-free-png.webp" alt="LinkedIn"></a>
+          <a href="https://github.com/AlexyJoaquim-Reino" target="_blank"><img src="./img/17119660-logo-github-icone-git-hub-avec-texte-sur-fond-blanc-et-noir-gratuit-vectoriel copie.png" alt="GitHub"></a>
+          <a href="https://www.instagram.com/joaquim_alexy/" target="_blank"><img src="./img/instagram-logo-instagram-icon-transparent-free-png.webp" alt="Instagram"></a>
         </div>
       </div>
 
@@ -100,8 +105,21 @@
     <p>2025 Portfolio. Tous droits réservés. | Site entièrement développé et designé par JOAQUIM Alexy</p>
   </footer>
 
-  <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+  </script>
+
   <script>
+      console.log("Tentative d'envoi avec EmailJS : ", {
+        serviceID: "service_iaz8hxq",
+        templateID: "template_tr9vnkh",
+        publicKey: "gyFnnXz0noGcOl2eg",
+        nom: nom,
+        prenom: prenom,
+        email: email,
+        message: message
+      });
+
         // Initialisation d'EmailJS
       emailjs.init("gyFnnXz0noGcOl2eg"); // Remplacez YOUR_USER_ID par votre ID utilisateur EmailJS
 
@@ -147,7 +165,6 @@
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('active');
     });
-  </script>
   </script>
 </body>
 </html>
