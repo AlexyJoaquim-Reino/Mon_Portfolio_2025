@@ -33,26 +33,24 @@
 
   <!-- Section Hero -->
   <main>
-    <section id="hero">
-      <div class="animated-squares">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <div class="hero-content">
-        <h1>Alexy JOAQUIM</h1>
-        <img id="Alexy" src="./img/Alexy.JPG" alt="Alexy JOAQUIM">
-        <p class="presentation">Motion designer, futur modeleur 3D et monteur vidéo.
-           Étudiant en deuxième année de BUT Métiers du Multimédia et de l'Internet
-           à la recherche d'un stage de 12 semaines à partir du mois d'Avril</p>
-        <a href="./pdf/CV_Alexy_JOAQUIM.pdf" class="cta-btn">Voir mon CV</a>
-        <div class="social-icons">
-          <a href="https://www.linkedin.com/in/alexy-joaquim-reino-950869221/" target="_blank"><img src="./img/linkedin-logo-linkedin-icon-transparent-free-png.webp" alt="LinkedIn"></a>
-          <a href="https://github.com/AlexyJoaquim-Reino" target="_blank"><img src="./img/17119660-logo-github-icone-git-hub-avec-texte-sur-fond-blanc-et-noir-gratuit-vectoriel copie.png" alt="GitHub"></a>
-          <a href="https://www.instagram.com/joaquim_alexy/" target="_blank"><img src="./img/instagram-logo-instagram-icon-transparent-free-png.webp" alt="ArtStation"></a>
+    <div class="container-section-accueil">
+      <section id="hero">
+        <div class="animated-squares"></div>
+        <div class="hero-content">
+          <h1>Alexy JOAQUIM</h1>
+          <img id="Alexy" src="./img/Alexy.JPG" alt="Alexy JOAQUIM">
+          <p class="presentation">Motion designer, futur modeleur 3D et monteur vidéo.
+             Étudiant en deuxième année de BUT Métiers du Multimédia et de l'Internet
+             à la recherche d'un stage de 12 semaines à partir du mois d'Avril</p>
+          <a href="./pdf/CV_Alexy_JOAQUIM.pdf" target="_blank" class="cta-btn">Voir mon CV</a>
+          <div class="social-icons">
+            <a href="https://www.linkedin.com/in/alexy-joaquim-reino-950869221/" target="_blank"><img src="./img/linkedin-logo-linkedin-icon-transparent-free-png.webp" alt="LinkedIn"></a>
+            <a href="https://github.com/AlexyJoaquim-Reino" target="_blank"><img src="./img/17119660-logo-github-icone-git-hub-avec-texte-sur-fond-blanc-et-noir-gratuit-vectoriel copie.png" alt="GitHub"></a>
+            <a href="https://www.instagram.com/joaquim_alexy/" target="_blank"><img src="./img/instagram-logo-instagram-icon-transparent-free-png.webp" alt="ArtStation"></a>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
 
     <!-- Section À propos -->
     <section id="about">
@@ -147,30 +145,59 @@
       card.style.setProperty('--card-glow', 'hsl(175, 100%, 90%)');
     });
 
+   
     document.addEventListener("DOMContentLoaded", () => {
-    const container = document.querySelector(".animated-squares");
-    const numSquares = 90; // Nombre total de carrés
+    const sections = document.querySelectorAll(".container-section-accueil, .animated-squares");
+    const numSquares = 120; // Nombre total de carrés
 
-    for (let i = 0; i < numSquares; i++) {
-      const square = document.createElement("div");
+    // Fonction pour générer les carrés avec les mêmes propriétés
+    function generateSquares(container) {
+        container.innerHTML = ""; // Supprime les anciens carrés
+        for (let i = 0; i < numSquares; i++) {
+            const square = document.createElement("div");
 
-      // Générer une position initiale uniquement sur les bords de l'écran
-      const isHorizontal = Math.random() > 0.5; // Décide si le carré commence sur un bord horizontal ou vertical
-      square.style.top = isHorizontal ? `${Math.random() * 100}%` : `${Math.random() < 0.5 ? 0 : 100}%`;
-      square.style.left = isHorizontal ? `${Math.random() < 0.5 ? 0 : 100}%` : `${Math.random() * 100}%`;
+            // Générer une position initiale sur les bords de l’écran
+            const isHorizontal = Math.random() > 0.5; // Décide si le carré commence sur un bord horizontal ou vertical
+            square.style.top = isHorizontal ? `${Math.random() * 100}%` : `${Math.random() < 0.5 ? 0 : 100}%`;
+            square.style.left = isHorizontal ? `${Math.random() < 0.5 ? 0 : 100}%` : `${Math.random() * 100}%`;
 
-      // Taille aléatoire
-      const size = Math.random() * 40 + 20; // Entre 20px et 60px
-      square.style.width = `${size}px`;
-      square.style.height = `${size}px`;
+            // Taille aléatoire
+            const size = Math.random() * 40 + 20; // Entre 20px et 60px
+            square.style.width = `${size}px`;
+            square.style.height = `${size}px`;
 
-      // Durée et délai d'animation
-      square.style.animationDuration = `${Math.random() * 10 + 5}s`; // Entre 5s et 15s
-      square.style.animationDelay = `0s`; // Pas de délai pour que tout commence immédiatement
+            // Durée et délai d'animation
+            square.style.animationDuration = `${Math.random() * 6 + 2}s`; // Entre 5s et 15s
+            square.style.animationDelay = `0s`; // Pas de délai pour que tout commence immédiatement
 
-      container.appendChild(square);
+            container.appendChild(square);
+        }
     }
-  });
+
+    // Observer pour afficher les carrés seulement dans la section visible
+    sections.forEach(section => {
+        const container = section.querySelector(".animated-squares");
+
+        if (section.classList.contains("container-section-accueil")) {
+            // Utilisation d'Intersection Observer pour afficher uniquement si visible
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        container.style.display = "block"; // Afficher les carrés
+                        generateSquares(container); // Générer les carrés
+                    } else {
+                        container.style.display = "none"; // Cacher les carrés hors de la section
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(section);
+        } else {
+            // Si ce n’est pas une section spéciale, on génère les carrés immédiatement
+            generateSquares(container);
+        }
+    });
+});
 
       // Sélectionnez les éléments HTML
     const hamburger = document.querySelector('.hamburger');

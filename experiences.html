@@ -33,29 +33,32 @@
 
   <!-- Section Expériences professionnelles -->
   <main>
-    <section id="experiences">
-      <div class="animated-squares">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
-      <h1>Expériences et compétences</h1>
-      <div class="experience-section">
-        <h2>Expériences professionnelles</h2>
-        <div class="experience-card">
-          <img class="Logo_RC2i" src="./img/Logo_RC2i.webp" alt="Logo RC2i">
-          <div class="paragraphe_stage">
-            <h3>Stage de Référencement de sites WordPress et de vidéos chez RC2i - ETOUY
-              11 Avril 2023 - 16 Juin 2023</h3>
-            <p>1. Je devais supprimer les liens verbeux et inutiles dans les sites WordPress de mon tuteur. J'étais également chargé d'optimiser le 
-              référencement des pages des sites WordPress pour augmenter leur visibilité.</p>
-            <p>2. Je devais optimiser non seulement des sites WordPress en terme de référencement mais aussi des vidéos. Sauf que pour ce cas-là, 
-              je devais réaliser un montage vidéo représentatif d'une page d'un des sites WordPress de mon tuteur et ensuite de le référencer 
-              sur Youtube</p>
+    <div class="container-section-experience">
+      <section id="experiences">
+        <div class="animated-squares">
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+        <h1>Expériences et compétences</h1>
+        <div class="experience-section">
+          <h2>Expériences professionnelles</h2>
+          <div class="experience-card">
+            <img class="Logo_RC2i" src="./img/Logo_RC2i.webp" alt="Logo RC2i">
+            <div class="paragraphe_stage">
+              <h3>Stage de Référencement de sites WordPress et de vidéos chez RC2i - ETOUY
+                11 Avril 2023 - 16 Juin 2023</h3>
+              <p>1. Je devais supprimer les liens verbeux et inutiles dans les sites WordPress de mon tuteur. J'étais également chargé d'optimiser le 
+                référencement des pages des sites WordPress pour augmenter leur visibilité.</p>
+              <p>2. Je devais optimiser non seulement des sites WordPress en terme de référencement mais aussi des vidéos. Sauf que pour ce cas-là, 
+                je devais réaliser un montage vidéo représentatif d'une page d'un des sites WordPress de mon tuteur et ensuite de le référencer 
+                sur Youtube</p>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
+
       <!-- Section Compétences -->
       <section id="competences">
         <h2>Compétences</h2>
@@ -162,32 +165,60 @@
   </footer>
 
   <script>
-      document.addEventListener("DOMContentLoaded", () => {
-      const container = document.querySelector(".animated-squares");
-      const numSquares = 90; // Nombre total de carrés
+       document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll(".container-section-experience, .animated-squares");
+    const numSquares = 70; // Nombre total de carrés
 
-      for (let i = 0; i < numSquares; i++) {
-        const square = document.createElement("div");
+    // Fonction pour générer les carrés avec les mêmes propriétés
+    function generateSquares(container) {
+        container.innerHTML = ""; // Supprime les anciens carrés
+        for (let i = 0; i < numSquares; i++) {
+            const square = document.createElement("div");
 
-        // Générer une position initiale uniquement sur les bords de l'écran
-        const isHorizontal = Math.random() > 0.5; // Décide si le carré commence sur un bord horizontal ou vertical
-        square.style.top = isHorizontal ? `${Math.random() * 100}%` : `${Math.random() < 0.5 ? 0 : 100}%`;
-        square.style.left = isHorizontal ? `${Math.random() < 0.5 ? 0 : 100}%` : `${Math.random() * 100}%`;
+            // Générer une position initiale sur les bords de l’écran
+            const isHorizontal = Math.random() > 0.5; // Décide si le carré commence sur un bord horizontal ou vertical
+            square.style.top = isHorizontal ? `${Math.random() * 100}%` : `${Math.random() < 0.5 ? 0 : 100}%`;
+            square.style.left = isHorizontal ? `${Math.random() < 0.5 ? 0 : 100}%` : `${Math.random() * 100}%`;
 
-        // Taille aléatoire
-        const size = Math.random() * 40 + 20; // Entre 20px et 60px
-        square.style.width = `${size}px`;
-        square.style.height = `${size}px`;
+            // Taille aléatoire
+            const size = Math.random() * 40 + 20; // Entre 20px et 60px
+            square.style.width = `${size}px`;
+            square.style.height = `${size}px`;
 
-        // Durée et délai d'animation
-        square.style.animationDuration = `${Math.random() * 10 + 5}s`; // Entre 5s et 15s
-        square.style.animationDelay = `0s`; // Pas de délai pour que tout commence immédiatement
+            // Durée et délai d'animation
+            square.style.animationDuration = `${Math.random() * 3 + 1}s`; // Entre 5s et 15s
+            square.style.animationDelay = `0s`; // Pas de délai pour que tout commence immédiatement
 
-        container.appendChild(square);
-      }
+            container.appendChild(square);
+        }
+    }
+
+    // Observer pour afficher les carrés seulement dans la section visible
+    sections.forEach(section => {
+        const container = section.querySelector(".animated-squares");
+
+        if (section.classList.contains("container-section-experience")) {
+            // Utilisation d'Intersection Observer pour afficher uniquement si visible
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        container.style.display = "block"; // Afficher les carrés
+                        generateSquares(container); // Générer les carrés
+                    } else {
+                        container.style.display = "none"; // Cacher les carrés hors de la section
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(section);
+        } else {
+            // Si ce n’est pas une section spéciale, on génère les carrés immédiatement
+            generateSquares(container);
+        }
     });
+});
 
-    // Sélectionnez les éléments HTML
+  // Sélectionnez les éléments HTML
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
 
@@ -196,6 +227,7 @@
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('active');
     });
+
 
 
   </script>

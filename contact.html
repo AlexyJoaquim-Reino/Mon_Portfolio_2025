@@ -49,13 +49,18 @@
 
   <!-- Section Contact -->
   <main>
-    <section id="contact">
-      <h1>Contactez-moi</h1>
-      <p>
-        Vous avez un projet en tête ou souhaitez discuter d'une opportunité ?
-        N'hésitez pas à me contacter via le formulaire ci-dessous ou directement par email.
-      </p>
+    <div class="container-section-contact">
+    <div class="animated-squares"></div>
+      <section id="contact">
+        <h1>Contactez-moi</h1>
+        <p>
+          Vous avez un projet en tête ou souhaitez discuter d'une opportunité ?
+          N'hésitez pas à me contacter via le formulaire ci-dessous ou directement par email.
+        </p>
+      </section>
+    </div>
 
+    <section id="contact">
       <!-- Formulaire de contact -->
       <div class="form-container">
         <h2>Formulaire de contact</h2>
@@ -156,6 +161,62 @@
         });
       });
 
+
+      
+    document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll(".container-section-contact, .animated-squares");
+    const numSquares = 70; // Nombre total de carrés
+
+    // Fonction pour générer les carrés avec les mêmes propriétés
+    function generateSquares(container) {
+        container.innerHTML = ""; // Supprime les anciens carrés
+        for (let i = 0; i < numSquares; i++) {
+            const square = document.createElement("div");
+
+            // Générer une position initiale sur les bords de l’écran
+            const isHorizontal = Math.random() > 0.5; // Décide si le carré commence sur un bord horizontal ou vertical
+            square.style.top = isHorizontal ? `${Math.random() * 100}%` : `${Math.random() < 0.5 ? 0 : 100}%`;
+            square.style.left = isHorizontal ? `${Math.random() < 0.5 ? 0 : 100}%` : `${Math.random() * 100}%`;
+
+            // Taille aléatoire
+            const size = Math.random() * 40 + 20; // Entre 20px et 60px
+            square.style.width = `${size}px`;
+            square.style.height = `${size}px`;
+
+            // Durée et délai d'animation
+            square.style.animationDuration = `${Math.random() * 3 + 1}s`; // Entre 5s et 15s
+            square.style.animationDelay = `0s`; // Pas de délai pour que tout commence immédiatement
+
+            container.appendChild(square);
+        }
+    }
+
+    // Observer pour afficher les carrés seulement dans la section visible
+    sections.forEach(section => {
+        const container = section.querySelector(".animated-squares");
+
+        if (section.classList.contains("container-section-contact")) {
+            // Utilisation d'Intersection Observer pour afficher uniquement si visible
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        container.style.display = "block"; // Afficher les carrés
+                        generateSquares(container); // Générer les carrés
+                    } else {
+                        container.style.display = "none"; // Cacher les carrés hors de la section
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(section);
+        } else {
+            // Si ce n’est pas une section spéciale, on génère les carrés immédiatement
+            generateSquares(container);
+        }
+    });
+});
+
+
          // Sélectionnez les éléments HTML
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
@@ -165,6 +226,7 @@
       hamburger.classList.toggle('active');
       navLinks.classList.toggle('active');
     });
+
   </script>
 </body>
 </html>
