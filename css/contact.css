@@ -26,6 +26,44 @@ header {
   width: 100%;
 }
 
+.container-section-contact {
+  position: relative; /* Définit un cadre pour les carrés */
+  overflow: hidden; /* Empêche les carrés de dépasser */
+  padding: 50px 20px;
+}
+
+.animated-squares {
+  position: absolute; /* Position absolue à l'intérieur de .container-section-realisations */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none; /* Caché par défaut */
+  pointer-events: none; /* Empêche les carrés d'interférer avec le texte */
+  z-index: 0; /* Place les carrés derrière le texte */
+}
+
+.animated-squares div {
+  position: absolute;
+  background: none;
+  animation: moveSquare 10s infinite linear;
+}
+
+
+@keyframes moveSquare {
+  0% {
+      transform: translate(0, 0) rotate(0deg);
+  }
+  100% {
+      transform: translate(450px, 450px) rotate(180deg); /* Augmente la distance */
+      opacity:1;
+  }
+}
+
+.container-section-contact {
+    background-color:#1c1c1c;
+  }
+
 /* Navigation */
 nav ul {
   list-style: none;
@@ -68,6 +106,7 @@ nav ul li a {
     width: 100%;
     text-align: center;
     padding: 20px 0;
+    z-index: 2000;
   }
 
   .nav-links.active {
