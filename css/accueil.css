@@ -6,6 +6,7 @@ body {
     color: #f5f5f5;
   }
   
+
   /* Header */
 /* Header */
 header {
@@ -183,15 +184,7 @@ nav ul li a {
   }
   
   /* Centrer le contenu du hero-content sur mobile */
-@media (max-width: 768px) {
 
-  .card img {
-    top: 0%; /* Positionne l’image en haut */
-    transform: translate(-50%, 0); /* Ajuste le centrage horizontalement */
-    height: auto; /* Pour éviter que l’image soit étirée */
-    object-fit: contain; /* Empêche que l’image soit coupée */
-    width:80%;
-}
 
   #hero {
     height:120vh;
@@ -221,7 +214,7 @@ nav ul li a {
   .hero-content .cta-btn {
     margin-top: 15px;
   }
-}
+
 
   .cta-btn {
     display: inline-block;
@@ -429,14 +422,122 @@ nav ul li a {
     object-fit: cover; /* Remplit la carte en coupant légèrement l’image si nécessaire */
 }
 
+  @media (max-width: 768px) {
+    .card {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 0.7;
+      overflow: hidden;
+      padding-bottom: 20px; 
+       
+    }
+
+    .card img {
+      width: 150% !important;
+      height: 150% !important;
+      top: 50% !important;
+      left: 50% !important;
+      transform: translate(-50%, -50%) !important;
+      position: absolute !important;
+      object-fit: contain;
+      z-index: 1;
+    }
+
+    .card:before, .card:after {
+      background-size: cover;
+    }
+
+    .card .content {
+      position: absolute;
+      bottom: 60px;
+      left: 10px;
+      right: 10px;
+      z-index: 2;
+      font-size: 12px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 6px;
+      border-radius: 6px;
+      color: white;
+      text-shadow: 1px 1px 2px black;
+    }
+
+    .card .nom,
+    .card .type,
+    .card .hp,
+    .card .stats {
+      z-index: 2;
+      position: absolute;
+      font-size: 11px;
+      text-shadow: 1px 1px 1px black;
+    }
+
+    .card .nom {
+      top: 10px !important;
+      left: 10px !important;
+      right: unset !important;
+      font-size:15px;
+    }
+
+    .card .hp {
+      top: 10px !important;
+      right: 10px !important;
+      left: unset !important;
+      font-size:15px;
+    }
+
+    .card .type {
+      top: 30px !important;
+      right: 5px !important;
+      left: unset !important;
+    }
+
+    .card .content {
+      bottom: 30px;
+      left: 10px;
+      right: 10px;
+      font-size: 11px;
+    }
+
+    .card .paragraphe_carte {
+      font-size: 10px;
+      line-height: 1.3;
+      margin-bottom: 5px;
+    }
+
+    .paragraphe_carte strong {
+      font-size: 15px !important;
+      display: block;
+      margin-bottom: 2px;
+      text-align:center;
+    }
+
+    .card .stats {
+      bottom: 10px;
+      left: 10px;
+      right: 10px;
+      display: flex;
+      justify-content: space-between;
+      font-size: 10px;
+    }
+
+    .card .stats span {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 3px 6px;
+      border-radius: 4px;
+    }
+  }
+
+  
 
 
   .card .content {
     position: relative;
     z-index: 5;
-    margin-top: 130px;
+    margin-top: 120px;
     color: white;
     text-shadow: 1px 1px 2px black;
+    background: rgba(0, 0, 0, 0.5);
+    border-radius:10px;
   }
 
   .stats {
@@ -483,6 +584,8 @@ nav ul li a {
   }
 
   .paragraphe_carte{
+    margin-left: auto;
+    margin-right: auto;
     width:75vw;
   }
 
