@@ -128,6 +128,10 @@ nav ul li a {
     border-radius:10px;
   }
 
+  .Logo_FabienLecoeuvreOrganisation {
+    border-radius:10px;
+  }
+
   /* Section Expériences */
   #experiences *:not(p) {
     text-align: center;
@@ -246,7 +250,7 @@ nav ul li a {
 
     .experience-card {
       display:block;
-      left:0px;
+      left:-15px;
     }
 
     .experience-card img {
