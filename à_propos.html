@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>À Propos - Portfolio Alexy JOAQUIM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/à_propos.css">
+</head>
+<body>
+  <!-- Header -->
+   <header>
+    <div class="header-container">
+        <div class="logo">
+        <a href="./index.html"><img src="./img/logo_Alexy.png" alt="Logo Alexy JOAQUIM"></a>
+        </div>
+        <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="à_propos.html" class="active">À Propos</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+        </nav>
+        <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+        </div>
+    </div>
+   </header>
+
+    <main>
+        <section class="container-section-accueil about-section">
+            <div class="animated-squares">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+
+            <div class="about-content-wrapper">
+            <!-- Colonne gauche : photo -->
+            <div class="about-photo">
+                <img src="./img/Alexy_sans_fond.png" alt="Alexy JOAQUIM">
+            </div>
+
+            <!-- Colonne droite : texte -->
+            <div class="about-text">
+                <h1 class="about-title">À PROPOS</h1>
+
+                <p class="about-meta">
+                <strong>Alexy Joaquim </strong></p>
+                
+                <p class="about-description">Création numérique, de la conception à la réalisation.</p>
+
+                <p class="about-description">Étudiant en troisième année de BUT MMI (Métiers du Multimédia et de 
+                l’Internet) à l’Université Sorbonne Paris Nord, je développe une approche complète et polyvalente 
+                de la création numérique.</p>
+
+                <p class="about-description">
+                Je conçois et réalise des projets de A à Z, de la réflexion initiale à la production finale : 
+                graphisme, mise en page, vidéo, montage, travail du son et de la bande sonore, harmonie des couleurs
+                et cohérence visuelle des contenus.</p>
+
+                <p class="about-description">
+                Mon parcours m’a permis d’acquérir une vision complète des projets multimédias, où chaque élément 
+                (image, rythme, son, structure et narration) participe à l’équilibre et au sens de la réalisation.</p>
+
+                <p class="about-description">
+                Ce portfolio présente une sélection de projets que j’ai réalisés, reflétant ma polyvalence, ma 
+                capacité à mener des projets complets et mon projet de poursuite d’études en Master dans le domaine 
+                de la création numérique.</p>
+            </div>
+            </div>
+        </section>
+    </main>
+
+
+  <!-- Footer -->
+  <footer>
+    <p>2025 Portfolio. Tous droits réservés. | Site entièrement développé et designé par JOAQUIM Alexy</p>
+  </footer>
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+        const sections = document.querySelectorAll(".container-section-accueil");
+        const numSquares = 70;
+
+        function generateSquares(container) {
+            if (!container) return;                 // ✅ protection
+            container.innerHTML = "";
+            for (let i = 0; i < numSquares; i++) {
+            const square = document.createElement("div");
+
+            const isHorizontal = Math.random() > 0.5;
+            square.style.top = isHorizontal ? `${Math.random() * 100}%` : `${Math.random() < 0.5 ? 0 : 100}%`;
+            square.style.left = isHorizontal ? `${Math.random() < 0.5 ? 0 : 100}%` : `${Math.random() * 100}%`;
+
+            const size = Math.random() * 40 + 20;
+            square.style.width = `${size}px`;
+            square.style.height = `${size}px`;
+
+            square.style.animationDuration = `${Math.random() * 3 + 1}s`;
+            square.style.animationDelay = `0s`;
+
+            container.appendChild(square);
+            }
+        }
+
+        sections.forEach(section => {
+            const container = section.querySelector(".animated-squares");
+            if (!container) return;                 // ✅ protection
+
+            const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                container.style.display = "block";
+                generateSquares(container);
+                } else {
+                container.style.display = "none";
+                }
+            });
+            }, { threshold: 0.3 });
+
+            observer.observe(section);
+        });
+
+        // Hamburger (protégé aussi)
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        if (hamburger && navLinks) {
+            hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('active');
+            navLinks.classList.toggle('active');
+            });
+        }
+        });
+    </script>
+
+</body>
+</html>

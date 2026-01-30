@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - Portfolio Alexy JOAQUIM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css">
+  <link rel="stylesheet" href="./css/contact.css">
+   <style>
+    textarea {
+      resize: none; /* Empêche la redimension du champ texte */
+      width: 100%;
+      height: 150px;
+    }
+    .error-message {
+      color: red;
+      display: none;
+    }
+    .success-message {
+      color: green;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+ <!-- Header -->
+   <header>
+    <div class="header-container">
+        <div class="logo">
+        <a href="./index.html"><img src="./img/logo_Alexy.png" alt="Logo Alexy JOAQUIM"></a>
+        </div>
+        <nav>
+        <ul class="nav-links">
+            <li><a href="index.html">Accueil</a></li>
+            <li><a href="à_propos.html">À Propos</a></li>
+            <li><a href="projets.html">Projets</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+        </ul>
+        </nav>
+        <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+        </div>
+    </div>
+   </header>
+
+  <!-- Section Contact -->
+  <main>
+    <div class="container-section-contact">
+    <div class="animated-squares"></div>
+      <section id="contact">
+        <h1>Contactez-moi</h1>
+        <p>
+          Vous avez un projet en tête ou souhaitez discuter d'une opportunité ?
+          N'hésitez pas à me contacter via le formulaire ci-dessous ou directement par email.
+        </p>
+      </section>
+    </div>
+
+    <section id="contact">
+      <!-- Formulaire de contact -->
+      <div class="form-container">
+        <h2>Formulaire de contact</h2>
+        <form id="contact-form" action="send_email.php" method="POST">
+          <div class="error-message" id="error-message">Veuillez compléter tous les champs.</div>
+
+          <label for="nom">Nom</label>
+          <input type="text" id="nom" name="nom" placeholder="Écrivez votre NOM" required>
+
+          <label for="prenom">Prénom</label>
+          <input type="text" id="prenom" name="prenom" placeholder="Écrivez votre Prénom" required>
+
+          <label for="email">Adresse email</label>
+          <input type="email" id="email" name="email" placeholder="Écrivez votre adresse email" required>
+
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Écrivez votre message" required></textarea>
+
+          <button type="submit">Envoyer</button>
+
+          <div id="success-message" style="display: none; color: green; font-weight: bold; margin-top: 10px;">
+            ✅ Votre message a été envoyé avec succès !
+          </div>
+          
+        </form>
+      </div>
+
+      <!-- Lien retour à l'accueil -->
+      <div class="back-to-home">
+        <a href="index.html" class="cta-btn">Revenir à la page d'accueil</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>2025 Portfolio. Tous droits réservés. | Site entièrement développé et designé par JOAQUIM Alexy</p>
+  </footer>
+
+  <script type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+  </script>
+
+  <script>
+      console.log("Tentative d'envoi avec EmailJS : ", {
+        serviceID: "service_iaz8hxq",
+        templateID: "template_tr9vnkh",
+        publicKey: "gyFnnXz0noGcOl2eg",
+        nom: nom,
+        prenom: prenom,
+        email: email,
+        message: message
+      });
+
+        // Initialisation d'EmailJS
+      emailjs.init("gyFnnXz0noGcOl2eg"); // Remplacez YOUR_USER_ID par votre ID utilisateur EmailJS
+
+      // Gestionnaire de soumission du formulaire
+      document.getElementById('contact-form').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        // Récupérer les valeurs du formulaire
+        const nom = document.getElementById('nom').value;
+        const prenom = document.getElementById('prenom').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        if (!nom || !prenom || !email || !message) {
+          document.getElementById('error-message').style.display = 'block';
+          document.getElementById('success-message').style.display = 'none';
+          return;
+        }
+
+        document.getElementById('error-message').style.display = 'none';
+
+        // Envoi des données via EmailJS
+        emailjs.send("service_iaz8hxq", "template_tr9vnkh", {
+          nom: nom,
+          prenom: prenom,
+          email: email,
+          message: message,
+        }).then(function(response) {
+          console.log("SUCCESS!", response.status, response.text);
+          document.getElementById('success-message').style.display = 'block';
+        }, function(error) {
+          console.log("FAILED...", error);
+          alert("Une erreur s'est produite. Veuillez réessayer.");
+        });
+      });
+
+
+      
+    document.addEventListener("DOMContentLoaded", () => {
+    const sections = document.querySelectorAll(".container-section-contact, .animated-squares");
+    const numSquares = 70; // Nombre total de carrés
+
+    // Fonction pour générer les carrés avec les mêmes propriétés
+    function generateSquares(container) {
+        container.innerHTML = ""; // Supprime les anciens carrés
+        for (let i = 0; i < numSquares; i++) {
+            const square = document.createElement("div");
+
+            // Générer une position initiale sur les bords de l’écran
+            const isHorizontal = Math.random() > 0.5; // Décide si le carré commence sur un bord horizontal ou vertical
+            square.style.top = isHorizontal ? `${Math.random() * 100}%` : `${Math.random() < 0.5 ? 0 : 100}%`;
+            square.style.left = isHorizontal ? `${Math.random() < 0.5 ? 0 : 100}%` : `${Math.random() * 100}%`;
+
+            // Taille aléatoire
+            const size = Math.random() * 40 + 20; // Entre 20px et 60px
+            square.style.width = `${size}px`;
+            square.style.height = `${size}px`;
+
+            // Durée et délai d'animation
+            square.style.animationDuration = `${Math.random() * 3 + 1}s`; // Entre 5s et 15s
+            square.style.animationDelay = `0s`; // Pas de délai pour que tout commence immédiatement
+
+            container.appendChild(square);
+        }
+    }
+
+    // Observer pour afficher les carrés seulement dans la section visible
+    sections.forEach(section => {
+        const container = section.querySelector(".animated-squares");
+
+        if (section.classList.contains("container-section-contact")) {
+            // Utilisation d'Intersection Observer pour afficher uniquement si visible
+            const observer = new IntersectionObserver(entries => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        container.style.display = "block"; // Afficher les carrés
+                        generateSquares(container); // Générer les carrés
+                    } else {
+                        container.style.display = "none"; // Cacher les carrés hors de la section
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            observer.observe(section);
+        } else {
+            // Si ce n’est pas une section spéciale, on génère les carrés immédiatement
+            generateSquares(container);
+        }
+    });
+});
+
+
+         // Sélectionnez les éléments HTML
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    // Ajoutez un gestionnaire d'événement pour le clic sur le hamburger
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+  </script>
+
+  <script src="./js/main.js"></script>
+  
+</body>
+</html>
+

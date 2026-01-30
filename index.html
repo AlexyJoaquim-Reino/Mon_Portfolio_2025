@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Accueil - Portfolio Alexy JOAQUIM</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./css/accueil.css">
+</head>
+
+<body>
+  <!-- Header -->
+  <header>
+    <div class="header-container">
+      <div class="logo">
+        <img src="./img/logo_Alexy.png" alt="Logo Alexy JOAQUIM">
+      </div>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Accueil</a></li>
+          <li><a href="à_propos.html">À Propos</a></li>
+          <li><a href="projets.html">Projets</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section Hero -->
+  <main>
+    <div class="container-section-accueil">
+      <section id="hero">
+        <video class="hero-video" autoplay muted loop playsinline preload="auto">
+          <source src="./video/video-accueil.mp4" type="video/mp4" />
+        </video>
+
+        <div class="hero-overlay"></div>
+
+        <button id="sound-toggle" aria-label="Activer le son">
+          Activer le son
+        </button>
+
+        <div class="hero-content">
+          <div class="hero-title">
+            <h1 class="TitreEmergence">ÉMERGENCE</h1>
+            <h2 class="hero-subtitle">AU-DELÀ DES PIXELS</h2>
+          </div>
+
+          <div class="hero-identity">
+            <p class="hero-name">Alexy JOAQUIM</p>
+            <p class="hero-role">Design Interactif & Stratégies Numériques</p>
+          </div>
+        </div>
+
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const card = document.getElementById('card');
+    const highlight = document.getElementById('highlight');
+
+    if (card && highlight) {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const rotateX = (y - rect.height / 2) / 10;
+        const rotateY = (rect.width / 2 - x) / 10;
+
+        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        const img = card.querySelector('img');
+        if (img) {
+          img.style.transform = `translate(-50%, -50%) translateZ(30px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+        }
+
+        highlight.style.opacity = 1;
+        highlight.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 255, 255, 0.5) 0%, transparent 60%)`;
+
+        const hue = (x / rect.width) * 360;
+        const lightness = 50 + (y / rect.height) * 20;
+        card.style.setProperty('--card-edge', `hsl(${hue}, 100%, ${lightness}%)`);
+        card.style.setProperty('--card-glow', `hsl(${hue}, 100%, ${lightness + 10}%)`);
+      });
+
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0)';
+        const img = card.querySelector('img');
+        if (img) {
+          img.style.transform = 'translate(-50%, -50%) translateZ(30px) rotateX(0) rotateY(0)';
+        }
+
+        highlight.style.opacity = 0;
+        card.style.setProperty('--card-edge', 'hsl(47, 100%, 78%)');
+        card.style.setProperty('--card-glow', 'hsl(175, 100%, 90%)');
+      });
+    }
+    // 2) Hamburger
+
+    const hamburger = document.querySelector('.hamburger');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (hamburger && navLinks) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('active');
+        navLinks.classList.toggle('active');
+      });
+    }
+
+
+    // 3) Bouton son vidéo
+ 
+    const video = document.querySelector('.hero-video');
+    const soundBtn = document.getElementById('sound-toggle');
+
+    if (video && soundBtn) {
+      soundBtn.addEventListener('click', async () => {
+        try {
+          if (video.muted) {
+            video.muted = false;
+            await video.play();
+            soundBtn.textContent = 'Couper le son';
+            soundBtn.setAttribute('aria-label', 'Couper le son');
+          } else {
+            video.muted = true;
+            soundBtn.textContent = 'Activer le son';
+            soundBtn.setAttribute('aria-label', 'Activer le son');
+          }
+        } catch (e) {
+          video.muted = true;
+          soundBtn.textContent = 'Activer le son';
+          soundBtn.setAttribute('aria-label', 'Activer le son');
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
